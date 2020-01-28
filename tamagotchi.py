@@ -2,16 +2,18 @@ class Pet:
     def __init__(self, name):
         self.name = name
         self.happiness = 5
-        self.hunger = 0 
-    # happiness/10 (wheere 10 is the highest), hunger/5 (where 5 is hungriest)
+        self.hunger = 0
 
     def feed(self):
         if (self.hunger == 0):
             print(self.name + ' is full')
+        elif (len(log) > 2 and log[-2] == 1 and log[-1] == 1):
+            print(self.name + ' cannot eat aymore')
+            self.happiness -= 2
         else:
             self.hunger -= 1
             print("You've fed your pet. It's hunger level is " + str(self.hunger) + "/5")
-    
+
     def play(self):
         if (self.hunger) == 5:
             print(self.name + ' is too hungry to play')
@@ -25,10 +27,13 @@ class Pet:
     def stats(self):
         print(self.name + "'s happiness is " + str(self.happiness) + " and hunger is " + str(self.hunger))
 
-print('Enter your name:')
+print('Enter your Tamagotchi name:')
 x = input()
 pet = Pet(x)
 
+log = []
+def logger(number):
+    log.append(number)
 
 game_running = True
 print('Hapiness 0-10 where 10 is super happy')
@@ -44,30 +49,18 @@ while (game_running == True):
     choice = input()
     if (choice == "1"):
         pet.feed()
+        logger(1)
     if (choice == "2"):
         pet.play()
+        logger(2)
     if (choice == "3"):
         pet.stats()
+        logger(3)
     if (choice == "4"):
         game_running = False
-    
-        
-
+    if (choice != "1" and choice != "2" and choice != "3" and choice != "4"):
+        print('Invalid input')
 
 print('Game over')
 
-#print 1 for feed, 2 for play
-# keypress = input
-# if keypress is 1 --> y.feed()
-# if keypress is 2 --> y.play()
-
-
-# user interface
-# be able to set up a instance of the class 
-# a function that creates a new pet
-# a func that reads the properties of the pet 
-# if statement for if hunger = 5 then can no longer play
-# some UI that allows the user to input what they want to do 
-# type/error checks 
-# once user creates a pet then it tells them what the happiness/uunger numbers mean 
 
